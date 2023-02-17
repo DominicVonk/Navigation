@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace dominicvonk\navigation\assetbundles\Navigation;
+namespace dominicvonk\navigation\assetbundles\navigation;
 
 use Craft;
 use craft\web\AssetBundle;
