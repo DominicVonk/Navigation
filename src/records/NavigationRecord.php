@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace fatfish\navigation\records;
+namespace dominicvonk\navigation\records;
 
-use fatfish\navigation\Navigation;
+use dominicvonk\navigation\Navigation;
 
 use Craft;
 use craft\db\ActiveRecord;

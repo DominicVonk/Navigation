@@ -6,7 +6,7 @@
      * Time: 12:20 PM
      */
 
-    namespace fatfish\navigation\records;
+    namespace dominicvonk\navigation\records;
     use yii\db\ActiveRecord;
     class NavigationNodeElemenetRecord extends ActiveRecord
     {

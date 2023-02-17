@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace fatfish\navigation\migrations;
+namespace dominicvonk\navigation\migrations;
 
-use fatfish\navigation\Navigation;
+use dominicvonk\navigation\Navigation;
 
 use Craft;
 use craft\config\DbConfig;

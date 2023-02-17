@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace fatfish\navigation\assetbundles\indexcpsection;
+namespace dominicvonk\navigation\assetbundles\indexcpsection;
 
 use Craft;
 use craft\web\AssetBundle;

@@ -6,7 +6,7 @@
      * Time: 10:39 AM
      */
 
-    namespace fatfish\navigation\models;
+    namespace dominicvonk\navigation\models;
     use Craft;
     use craft\base\Model;
 

@@ -6,23 +6,23 @@
  * Time: 12:21 PM
  */
 
-namespace fatfish\navigation\controllers;
+namespace dominicvonk\navigation\controllers;
 
 use Cake\Core\Retry\CommandRetry;
 use Craft;
 use craft\web\Controller;
-use fatfish\navigation\models\NavigationModel;
-use fatfish\navigation\models\NavigationNodeModel;
-use fatfish\navigation\Navigation;
-use fatfish\navigation\records\NavigationNodeElemenetRecord;
-use fatfish\navigation\records\NavigationRecord;
+use dominicvonk\navigation\models\NavigationModel;
+use dominicvonk\navigation\models\NavigationNodeModel;
+use dominicvonk\navigation\Navigation;
+use dominicvonk\navigation\records\NavigationNodeElemenetRecord;
+use dominicvonk\navigation\records\NavigationRecord;
 use Symfony\Component\DomCrawler\Tests\CrawlerTest;
 use yii\bootstrap\Nav;
 
 /**
  * Class NavigationController
  *
- * @package fatfish\navigation\controllers
+ * @package dominicvonk\navigation\controllers
  */
 class NavigationController extends Controller {
     public $model;

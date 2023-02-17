@@ -6,8 +6,8 @@
      * Time: 4:57 PM
      */
 
-    namespace fatfish\navigation\variables;
-    use fatfish\navigation\Navigation;
+    namespace dominicvonk\navigation\variables;
+    use dominicvonk\navigation\Navigation;
     use Craft;
     use craft\web\View;
     class NavigationVariable

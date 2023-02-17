@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace fatfish\navigation\models;
+namespace dominicvonk\navigation\models;
 
-use fatfish\navigation\Navigation;
+use dominicvonk\navigation\Navigation;
 
 use Craft;
 use craft\base\Model;

@@ -11,8 +11,8 @@
         "navigation"
     ],
     "support": {
-        "docs": "https://github.com/fatfishdigital/navigation/blob/master/README.md",
-        "issues": "https://github.com/fatfishdigital/navigation/issues"
+        "docs": "https://github.com/dominicvonk/navigation/blob/master/README.md",
+        "issues": "https://github.com/dominicvonk/navigation/issues"
     },
     "license": "MIT",
     "authors": [
@@ -34,10 +34,10 @@
         "handle": "craftnavigation",
         "hasCpSettings": true,
         "hasCpSection": true,
-        "changelogUrl": "https://github.com/fatfishdigital/navigation/master/CHANGELOG.md",
+        "changelogUrl": "https://github.com/dominicvonk/navigation/master/CHANGELOG.md",
         "components": {
-            "navigationService": "fatfish\\navigation\\services\\NavigationService"
+            "navigationService": "dominicvonk\\navigation\\services\\NavigationService"
         },
-        "class": "fatfish\\navigation\\Navigation"
+        "class": "dominicvonk\\navigation\\Navigation"
     }
 }

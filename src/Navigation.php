@@ -8,10 +8,10 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace fatfish\navigation;
+namespace dominicvonk\navigation;
 
-use fatfish\navigation\services\NavigationService as NavigationServiceService;
-use fatfish\navigation\models\Settings;
+use dominicvonk\navigation\services\NavigationService as NavigationServiceService;
+use dominicvonk\navigation\models\Settings;
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
@@ -19,7 +19,7 @@ use craft\events\PluginEvent;
 use craft\web\UrlManager;
 use craft\events\RegisterUrlRulesEvent;
 use craft\web\twig\variables\CraftVariable;
-use fatfish\navigation\variables\NavigationVariable;
+use dominicvonk\navigation\variables\NavigationVariable;
 use yii\base\Event;
 
 /**

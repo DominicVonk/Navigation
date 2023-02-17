@@ -1,6 +1,6 @@
 <?php
 
-namespace fatfish\navigation\migrations;
+namespace dominicvonk\navigation\migrations;
 
 use Craft;
 use craft\db\Migration;

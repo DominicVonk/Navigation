@@ -8,13 +8,13 @@
  * @copyright Copyright (c) 2018 Fatfish
  */
 
-namespace fatfish\navigation\services;
+namespace dominicvonk\navigation\services;
 use Craft;
 use craft\base\Component;
-use fatfish\navigation\models\NavigationModel;
-use fatfish\navigation\models\NavigationNodeModel;
-use fatfish\navigation\records\NavigationNodeElemenetRecord;
-use fatfish\navigation\records\NavigationRecord;
+use dominicvonk\navigation\models\NavigationModel;
+use dominicvonk\navigation\models\NavigationNodeModel;
+use dominicvonk\navigation\records\NavigationNodeElemenetRecord;
+use dominicvonk\navigation\records\NavigationRecord;
 use function GuzzleHttp\Promise\all;
 use yii\bootstrap\Nav;
 
