@@ -9,6 +9,7 @@
  */
 
 namespace dominicvonk\navigation\services;
+
 use Craft;
 use craft\base\Component;
 use dominicvonk\navigation\models\NavigationModel;
@@ -56,42 +57,38 @@ class NavigationService extends Component
      * to create new menu item
      */
 
-   public function findByName($name)
-   {
-       $MenuId = NavigationRecord::find()->select('id')->where(['MenuName'=>$name])->all();
-       if(isset($MenuId[0]['id']))
-       {
-           return $MenuId[0]['id'];
-       }
-       else
-       {
-           return false;
-       }
-   }
+    public function findByName($name)
+    {
+        $MenuId = NavigationRecord::find()->select('id')->where(['MenuName' => $name])->all();
+        if (isset($MenuId[0]['id'])) {
+            return $MenuId[0]['id'];
+        } else {
+            return false;
+        }
+    }
 
     /**
      * @param NavigationModel $model
      */
-    public function saveNavigation(NavigationModel $model,$id)
+    public function saveNavigation(NavigationModel $model, $id)
     {
 
 
-        $menduid=$this->findByName($model->MenuName);
+        $menduid = $this->findByName($model->MenuName);
 
-        if($menduid || (!is_null($id) && !isset($id))) {
+        if ($menduid || (!is_null($id) && !isset($id))) {
 
             $NavigationRecord = NavigationRecord::findOne($menduid);
             $NavigationRecord->siteId = $model->siteId;
             $NavigationRecord->MenuName = $model->MenuName;
             $NavigationRecord->MenuHtml = $model->MenuHtml;
-             $NavigationRecord->update(true);
+            $NavigationRecord->update(true);
             return $menduid;
-        }else
-            {
-                $NavigationRecord = new NavigationRecord();
-                $NavigationRecord->siteId = $model->siteId;
-                $NavigationRecord->MenuName = $model->MenuName;
-                $NavigationRecord->MenuHtml = $model->MenuHtml;
+        } else {
+            $NavigationRecord = new NavigationRecord();
+            $NavigationRecord->siteId = $model->siteId;
+            $NavigationRecord->MenuName = $model->MenuName;
+            $NavigationRecord->MenuHtml = $model->MenuHtml;
             $NavigationRecord->save(true);
             return ($NavigationRecord->getAttribute('id'));
         }
@@ -103,11 +100,10 @@ class NavigationService extends Component
      * @param $nodeId
      * @return bool
      */
-    public function CheckNodeElementId($nodeId,$menuId,$uniqueId)
+    public function CheckNodeElementId($nodeId, $menuId, $uniqueId)
     {
-        $NodeElementId = NavigationNodeElemenetRecord::find()->select('id')->where(['NodeId'=>$nodeId,'menuId'=> $menuId,'UniqueId'=>$uniqueId] )->all();
-        if(isset($NodeElementId[0]['id']))
-        {
+        $NodeElementId = NavigationNodeElemenetRecord::find()->select('id')->where(['NodeId' => $nodeId, 'menuId' => $menuId, 'UniqueId' => $uniqueId])->all();
+        if (isset($NodeElementId[0]['id'])) {
             return $NodeElementId[0]['id'];
         }
         return false;
@@ -122,35 +118,32 @@ class NavigationService extends Component
      */
     public function SaveNodeElement(NavigationNodeModel $model)
     {
-            $id=$this->CheckNodeElementId($model->NodeId,$model->menuId,$model->UniqueId);
+        $id = $this->CheckNodeElementId($model->NodeId, $model->menuId, $model->UniqueId);
 
 
-            if(!$id)
-            {
-                $record                  = new NavigationNodeElemenetRecord();
-                $record->NodeName        = $model->NodeName;
-                $record->NodeId          = $model->NodeId;
-                $record->ParenNode       = $model->ParenNode;
-                $record->menuId          = $model->menuId;
-                $record->menuUrl         = $model->menuUrl;
-                $record->MenuOrder       = $model->MenuOrder;
-                $record->UniqueId        = $model->UniqueId;
-                $record->save(true);
+        if (!$id) {
+            $record = new NavigationNodeElemenetRecord();
+            $record->NodeName = $model->NodeName;
+            $record->NodeId = $model->NodeId;
+            $record->ParenNode = $model->ParenNode;
+            $record->menuId = $model->menuId;
+            $record->menuUrl = $model->menuUrl;
+            $record->MenuOrder = $model->MenuOrder;
+            $record->UniqueId = $model->UniqueId;
+            $record->save(true);
 
-            }
-            else
-            {
-                $record = NavigationNodeElemenetRecord::findOne($id);
-                $record->NodeName        = $model->NodeName;
-                $record->NodeId          = $model->NodeId;
-                $record->ParenNode       = $model->ParenNode;
-                $record->menuId          = $model->menuId;
-                $record->menuUrl         = $model->menuUrl;
-                $record->MenuOrder       = $model->MenuOrder;
-                $record->UniqueId        = $model->UniqueId;
-                 $record->update(true);
-            }
-            return;
+        } else {
+            $record = NavigationNodeElemenetRecord::findOne($id);
+            $record->NodeName = $model->NodeName;
+            $record->NodeId = $model->NodeId;
+            $record->ParenNode = $model->ParenNode;
+            $record->menuId = $model->menuId;
+            $record->menuUrl = $model->menuUrl;
+            $record->MenuOrder = $model->MenuOrder;
+            $record->UniqueId = $model->UniqueId;
+            $record->update(true);
+        }
+        return;
 
     }
 
@@ -160,7 +153,7 @@ class NavigationService extends Component
     public function GetAllNavigation()
     {
         $record = new NavigationRecord();
-        return  $record::find()->all();
+        return $record::find()->all();
     }
 
     /**
@@ -171,7 +164,7 @@ class NavigationService extends Component
     public function GetNavigationById($id)
     {
         $NavigationRecord = new NavigationRecord();
-        return $NavigationRecord::find()->where(['id'=>$id])->all();
+        return $NavigationRecord::find()->where(['id' => $id])->all();
     }
 
     /**
@@ -187,11 +180,10 @@ class NavigationService extends Component
     {
         $NavigationRecord = new NavigationRecord();
         $NavigationNodeElementRecord = new NavigationNodeElemenetRecord();
-       if($NavigationRecord::deleteAll(['id'=>$id]) && $NavigationNodeElementRecord::deleteAll(['menuid'=>$id]))
-       {
-           return true;
-       }
-       return false;
+        if ($NavigationRecord::deleteAll(['id' => $id]) && $NavigationNodeElementRecord::deleteAll(['menuid' => $id])) {
+            return true;
+        }
+        return false;
 
 
     }
@@ -205,8 +197,8 @@ class NavigationService extends Component
     public function GetNavigationByName($handleName)
     {
 
-       $NavigationNodeElementRecord = new NavigationNodeElemenetRecord();
-       return $NavigationNodeElementRecord::find()->where(['menuId'=>(int)$this->findByName($handleName)])->orderBy(['MenuOrder'=>'asc'])->all();
+        $NavigationNodeElementRecord = new NavigationNodeElemenetRecord();
+        return $NavigationNodeElementRecord::find()->where(['menuId' => (int) $this->findByName($handleName)])->orderBy(['MenuOrder' => 'asc'])->all();
     }
 
     /**
@@ -214,11 +206,11 @@ class NavigationService extends Component
      * @return mixed
      * finds children of a particular menu with parenNode
      */
-    public function GetChild($nodeId,$menuId)
+    public function GetChild($nodeId, $menuId)
     {
 
         $NavigationNodeElementRecord = new NavigationNodeElemenetRecord();
-       return $NavigationNodeElementRecord::find()->where(['ParenNode'=>(int)$nodeId,'menuId'=>$menuId])->orderBy(['MenuOrder'=>'asc'])->all();
+        return $NavigationNodeElementRecord::find()->where(['ParenNode' => (int) $nodeId, 'menuId' => $menuId])->orderBy(['MenuOrder' => 'asc'])->all();
     }
     /*
      * param Navigation Model
@@ -238,9 +230,9 @@ class NavigationService extends Component
     /*
      * list menu id and name
      */
-        public function GetMenuList()
-        {
-                        return NavigationRecord::find()->orderBy(['id'=>'desc'])->all();
+    public function GetMenuList()
+    {
+        return NavigationRecord::find()->orderBy(['id' => 'desc'])->all();
 
-        }
+    }
 }

@@ -39,5 +39,15 @@
             "navigationService": "dominicvonk\\navigation\\services\\NavigationService"
         },
         "class": "dominicvonk\\navigation\\Navigation"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "craftcms/rector": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
     }
 }

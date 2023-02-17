@@ -61,7 +61,7 @@ class Navigation extends Plugin
      *
      * @var string
      */
-    public $schemaVersion = '1.0.4';
+    public string $schemaVersion = '1.0.4';
 
     // Public Methods
     // =========================================================================
@@ -93,7 +93,7 @@ class Navigation extends Plugin
                 $event->rules['craftnavigation/delete'] = 'craftnavigation/navigation/delete';
                 $event->rules['craftnavigation/deletenode'] = 'craftnavigation/navigation/menunodedelete';
                 $event->rules['craftnavigation/menusave'] = 'craftnavigation/navigation/menusave';
-                  $event->rules['craftnavigation/rename'] = 'craftnavigation/navigation/rename';
+                $event->rules['craftnavigation/rename'] = 'craftnavigation/navigation/rename';
             }
         );
 
@@ -103,10 +103,10 @@ class Navigation extends Plugin
             UrlManager::EVENT_REGISTER_CP_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
                 $event->rules['menulocation'] = 'craftnavigation/navigation/location';
-                $event->rules['craftnavigation']='craftnavigation/navigation/index';
-                $event->rules['craftnavigation/edit/<NavId:\d+>']='craftnavigation/navigation/edit';
+                $event->rules['craftnavigation'] = 'craftnavigation/navigation/index';
+                $event->rules['craftnavigation/edit/<NavId:\d+>'] = 'craftnavigation/navigation/edit';
                 $event->rules['craftnavigation/menusave'] = 'craftnavigation/navigation/menusave';
-                  $event->rules['craftnavigation/rename'] = 'craftnavigation/navigation/rename';
+                $event->rules['craftnavigation/rename'] = 'craftnavigation/navigation/rename';
 
             }
         );
@@ -128,30 +128,29 @@ class Navigation extends Plugin
         Event::on(
             CraftVariable::class,
             CraftVariable::EVENT_INIT,
-            function (Event $event)
-            {
-                    $variable = $event->sender;
-                    $variable->set('Navigation',NavigationVariable::class);
+            function (Event $event) {
+                $variable = $event->sender;
+                $variable->set('Navigation', NavigationVariable::class);
             }
         );
-/**
- * Logging in Craft involves using one of the following methods:
- *
- * Craft::trace(): record a message to trace how a piece of code runs. This is mainly for development use.
- * Craft::info(): record a message that conveys some useful information.
- * Craft::warning(): record a warning message that indicates something unexpected has happened.
- * Craft::error(): record a fatal error that should be investigated as soon as possible.
- *
- * Unless `devMode` is on, only Craft::warning() & Craft::error() will log to `craft/storage/logs/web.log`
- *
- * It's recommended that you pass in the magic constant `__METHOD__` as the second parameter, which sets
- * the category to the method (prefixed with the fully qualified class name) where the constant appears.
- *
- * To enable the Yii debug toolbar, go to your user account in the AdminCP and check the
- * [] Show the debug toolbar on the front end & [] Show the debug toolbar on the Control Panel
- *
- * http://www.yiiframework.com/doc-2.0/guide-runtime-logging.html
- */
+        /**
+         * Logging in Craft involves using one of the following methods:
+         *
+         * Craft::trace(): record a message to trace how a piece of code runs. This is mainly for development use.
+         * Craft::info(): record a message that conveys some useful information.
+         * Craft::warning(): record a warning message that indicates something unexpected has happened.
+         * Craft::error(): record a fatal error that should be investigated as soon as possible.
+         *
+         * Unless `devMode` is on, only Craft::warning() & Craft::error() will log to `craft/storage/logs/web.log`
+         *
+         * It's recommended that you pass in the magic constant `__METHOD__` as the second parameter, which sets
+         * the category to the method (prefixed with the fully qualified class name) where the constant appears.
+         *
+         * To enable the Yii debug toolbar, go to your user account in the AdminCP and check the
+         * [] Show the debug toolbar on the front end & [] Show the debug toolbar on the Control Panel
+         *
+         * http://www.yiiframework.com/doc-2.0/guide-runtime-logging.html
+         */
         Craft::info(
             Craft::t(
                 'craftnavigation',
@@ -170,7 +169,7 @@ class Navigation extends Plugin
      *
      * @return \craft\base\Model|null
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?\craft\base\Model
     {
         return new Settings();
     }

@@ -57,13 +57,13 @@ class NavigationModel extends Model
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-                    ['siteId','required'],
-                    ['someAttribute', 'default', 'value' => 'Some Default'],
-                    ['MenuName','required'],
-                    ['MenuHtml','required']
-            ];
+            ['siteId', 'required'],
+            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['MenuName', 'required'],
+            ['MenuHtml', 'required']
+        ];
     }
 }

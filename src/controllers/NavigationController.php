@@ -24,7 +24,8 @@ use yii\bootstrap\Nav;
  *
  * @package dominicvonk\navigation\controllers
  */
-class NavigationController extends Controller {
+class NavigationController extends Controller
+{
     public $model;
     public $NavigationNodeModel;
 
@@ -35,9 +36,12 @@ class NavigationController extends Controller {
      * @return \yii\web\Response
      */
 
-    public function actionLocation() {
-        return $this->renderTemplate('craftnavigation/menu/menulocation',
-                ['AllMenu' => Navigation::$plugin->navigationService->GetAllNavigation()]);
+    public function actionLocation()
+    {
+        return $this->renderTemplate(
+            'craftnavigation/menu/menulocation',
+            ['AllMenu' => Navigation::$plugin->navigationService->GetAllNavigation()]
+        );
     }
 
     /**
@@ -47,10 +51,13 @@ class NavigationController extends Controller {
      * @return \yii\web\Response
      *
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
 
-        return $this->renderTemplate('craftnavigation/index',
-                ['MenuList' => Navigation::$plugin->navigationService->GetMenuList()]);
+        return $this->renderTemplate(
+            'craftnavigation/index',
+            ['MenuList' => Navigation::$plugin->navigationService->GetMenuList()]
+        );
     }
 
     /**
@@ -58,7 +65,8 @@ class NavigationController extends Controller {
      *
      * @param NavigationModel $model
      */
-    public function actionSave() {
+    public function actionSave()
+    {
         $this->model = new NavigationModel();
         $this->NavigationNodeModel = new NavigationNodeModel();
         if (Craft::$app->request->isAjax) {
@@ -68,7 +76,7 @@ class NavigationController extends Controller {
             $UniqueId = str_replace('data_', '', Craft::$app->request->getBodyParam('UniqueId'));
             $MenuItems = Craft::$app->request->getBodyParam('menuArray'); //fetch html structure of menu from ajax request
             $MenuId =
-                    Navigation::$plugin->navigationService->saveNavigation($this->model, Craft::$app->request->getBodyParam('id'));
+                Navigation::$plugin->navigationService->saveNavigation($this->model, Craft::$app->request->getBodyParam('id'));
             if ($this->FindNodeMenuItem($MenuItems, $MenuId, $UniqueId)) {
                 echo true;
             }
@@ -82,7 +90,8 @@ class NavigationController extends Controller {
      *
      * @param $MenuId
      */
-    public function FindNodeMenuItem($menuItems, $MenuId, $UID) {
+    public function FindNodeMenuItem($menuItems, $MenuId, $UID)
+    {
 
 
         foreach ($menuItems as $menuItem):
@@ -111,17 +120,23 @@ class NavigationController extends Controller {
     /**
      * @return html
      */
-    public function actionEdit($NavId) {
+    public function actionEdit($NavId)
+    {
 
-        return $this->renderTemplate('craftnavigation/index',
-                ['MenuData' => Navigation::$plugin->navigationService->GetNavigationById($NavId),
-                        'Menu' => Navigation::$plugin->navigationService->GetMenuList()]);
+        return $this->renderTemplate(
+            'craftnavigation/index',
+            [
+                'MenuData' => Navigation::$plugin->navigationService->GetNavigationById($NavId),
+                'Menu' => Navigation::$plugin->navigationService->GetMenuList()
+            ]
+        );
     }
 
     /**
      *
      */
-    public function actionDelete() {
+    public function actionDelete()
+    {
         if (Craft::$app->request->isAjax) {
 
             if (Navigation::$plugin->navigationService->DeleteNavById(Craft::$app->request->getBodyParam('id'))) {
@@ -134,7 +149,8 @@ class NavigationController extends Controller {
     /**
      * Menu item deletion
      */
-    public function actionMenunodedelete() {
+    public function actionMenunodedelete()
+    {
         if (Craft::$app->request->isAjax) {
 
             $MenuNode = new NavigationNodeElemenetRecord();
@@ -158,14 +174,18 @@ class NavigationController extends Controller {
 
     }
 
-    public function Has_chidrens($NodeId, $MenuId) {
+    public function Has_chidrens($NodeId, $MenuId)
+    {
 
         $MenuNav_items_record = new NavigationNodeElemenetRecord();
         $Nav_Items = $MenuNav_items_record::findAll(['ParenNode' => $NodeId, 'menuId' => $MenuId]);
         if (is_array($Nav_Items)) {
             foreach ($Nav_Items as $NavigationItems) {
-                $MenuNav_items_record::deleteAll(['NodeId' => $NavigationItems->NodeId, 'UniqueId' => $NavigationItems->UniqueId,
-                        'menuId' => $NavigationItems->menuId]);
+                $MenuNav_items_record::deleteAll([
+                    'NodeId' => $NavigationItems->NodeId,
+                    'UniqueId' => $NavigationItems->UniqueId,
+                    'menuId' => $NavigationItems->menuId
+                ]);
                 $this->Has_chidrens($NavigationItems->NodeId, $MenuId);
             }
         } else {
@@ -178,9 +198,10 @@ class NavigationController extends Controller {
     Adding menu rename feature, In past we only can delete Navigation Title but cannot rename it.
     */
 
-    public function actionMenusave() {
+    public function actionMenusave()
+    {
         if (Craft::$app->request->isAjax) {
-            $NavigationModel = New NavigationModel();
+            $NavigationModel = new NavigationModel();
             $NavigationModel->MenuName = Craft::$app->request->getBodyParam('data');
             $NavigationModel->siteId = Craft::$app->request->getBodyParam('siteid');
             $NavigationData = Navigation::$plugin->navigationService->saveNavigationName($NavigationModel);
@@ -190,7 +211,8 @@ class NavigationController extends Controller {
 
     }
 
-    public function actionRename() {
+    public function actionRename()
+    {
         if (Craft::$app->request->isAjax) {
             $id = Craft::$app->request->getBodyParam('id');
             $name = Craft::$app->request->getBodyParam('name');
