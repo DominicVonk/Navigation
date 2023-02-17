@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-          "fatfish\\navigation\\": "src/"
+          "dominicvonk\\navigation\\": "src/"
         }
     },
     "extra": {
